@@ -1,2 +1,59 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<div class="container">
+  
+  <% if @user_info.errors.any? %>
+    <h3>
+      <%= @user_info.errors.count %>errors prohibited this obj from being saved:
+    </h3>
+    <ul>
+      <% @user_info.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  
+  <div class="row">
+    <div class="col-lg-3" >
+
+      <%= render'user_info', book: @user_info %>
+
+    </div>
+
+    <div class="col-lg-8 offset-md-1">
+
+      <h2>Books</h2>
+
+      <table class="table table-hover">
+
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+
+        <% @books.each do |book| %>
+
+          <tbody>
+            <tr>
+              <th>
+                <%= link_to user_path(book.user.id) do %>
+                  <%= image_tag book.user.get_profile_image(100,100) %><br />
+                <% end %>
+              </th>
+              <th>
+                <%= link_to book_path(book.id) do %>
+                  <%= book.title %>
+                <% end %>
+              </th>
+              <th><%= book.body %></th>
+            </tr>
+          </tbody>
+
+        <% end %>
+
+      </table>
+
+    </div>
+  </div>
+</div>

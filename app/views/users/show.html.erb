@@ -1,2 +1,45 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<%= flash[:notice] %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3" >
+
+      <%= render'books/user_info', book: @user_info %>
+      
+    </div>
+    
+    <div class="col-lg-8 offset-md-1">
+      
+      <h2>Books</h2>
+      
+      <table class="table table-hover">
+      
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+      
+        <% @books.each do |book| %>
+      
+          <tbody>
+            <tr>
+              <th><%= image_tag @user.get_profile_image(100,100) %></th>
+              <th>
+                <%= link_to book_path(book.id) do %>
+                  <%= book.title %>
+                <% end %>
+              </th>
+              <th><%= book.body %></th>
+            </tr>
+          </tbody>
+      
+        <% end %>
+      
+      </table>
+      
+    </div>
+  </div>
+</div>

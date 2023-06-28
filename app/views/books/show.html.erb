@@ -1,2 +1,48 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<%= flash[:notice] %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3" >
+
+      <%= render'user_info', book: @user_info %>
+
+    </div>
+
+    <div class="col-lg-8 offset-md-1">
+
+      <h2>Book detail</h2>
+
+        <table class="table table-hover">
+
+          <tbody>
+            <tr>
+              <th>
+                <%= link_to user_path(@book.user.id) do %>
+                  <%= image_tag @book.user.get_profile_image(100,100) %><br />
+                  <%= @book.user.name %>
+                <% end %>
+              </th>
+              <th>
+                <%= link_to book_path(@book.id) do %>
+                  <%= @book.title %>
+                <% end %>
+              </th>
+              <th><%= @book.body %></th>
+              <th>
+                <% if @book.user == current_user %>
+                  <%= link_to 'edit', edit_book_path(@book.id), class: 'btn btn-success' %>
+                <% end %>
+              </th>
+              <th>
+                <% if @book.user == current_user %>
+                  <%= link_to 'destroy', book_path(@book.id), method: :delete, class: 'btn btn-danger' %>
+                <% end %>
+              </th>
+            </tr>
+          </tbody>
+
+        </table>
+
+    </div>
+  </div>
+</div>

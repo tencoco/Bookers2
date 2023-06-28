@@ -1,2 +1,38 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3" >
+
+      <%= render'books/user_info', book: @user_info %>
+
+    </div>
+
+    <div class="col-lg-8 offset-md-1">
+
+      <h2>Users</h2>
+
+      <table class="table table-hover">
+
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>name</th>
+          </tr>
+        </thead>
+
+        <% @users.each do |user| %>
+
+          <tbody>
+            <tr>
+              <th><%= image_tag user.get_profile_image(100,100) %></th>
+              <th><%= user.name %></th>
+              <th><%= link_to 'show', user_path(user.id) %></th>
+            </tr>
+          </tbody>
+
+        <% end %>
+
+      </table>
+
+    </div>
+  </div>
+</div>
