@@ -4,16 +4,16 @@
   <div class="row">
     <div class="col-lg-3" >
 
-      <%= render'books/user_info', book: @user_info %>
-      
+      <%= render'books/user_info', user: @user_info, book: @create_book %>
+
     </div>
-    
+
     <div class="col-lg-8 offset-md-1">
-      
+
       <h2>Books</h2>
-      
+
       <table class="table table-hover">
-      
+
         <thead>
           <tr>
             <th></th>
@@ -21,9 +21,9 @@
             <th>Opinion</th>
           </tr>
         </thead>
-      
+
         <% @books.each do |book| %>
-      
+
           <tbody>
             <tr>
               <th><%= image_tag @user.get_profile_image(100,100) %></th>
@@ -35,11 +35,11 @@
               <th><%= book.body %></th>
             </tr>
           </tbody>
-      
+
         <% end %>
-      
+
       </table>
-      
+
     </div>
   </div>
 </div>
