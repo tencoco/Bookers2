@@ -26,7 +26,11 @@
 
           <tbody>
             <tr>
-              <th><%= image_tag @user.get_profile_image(100,100) %></th>
+              <th>
+                <%= link_to user_path(@user.id) do %>
+                  <%= image_tag @user.get_profile_image(100,100) %>
+                <% end %>
+              </th>
               <th>
                 <%= link_to book_path(book.id) do %>
                   <%= book.title %>
